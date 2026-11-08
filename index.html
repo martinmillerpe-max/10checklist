@@ -3,57 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دانلود رایگان راهنمای جامع</title>
+    <title>چک‌لیست ۱۰ مرحله‌ای مهندسی مسیر شغلی</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <style>
+        :root {
+            --brand: #0b525b;
+            --brand-dark: #05262b;
+            --brand-light: #147a87;
+            --accent: #2ec4b6;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
-        body { background: #f8fafc; color: #1e293b; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .card { background: #ffffff; max-width: 480px; width: 100%; padding: 35px 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); text-align: center; }
-        .badge { background: #dbeafe; color: #1d4ed8; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 16px; }
-        h1 { font-size: 24px; margin-bottom: 12px; color: #0f172a; line-height: 1.5; }
-        p { font-size: 15px; color: #475569; margin-bottom: 24px; line-height: 1.7; }
-        .features { text-align: right; background: #f1f5f9; padding: 15px 20px; border-radius: 12px; margin-bottom: 24px; font-size: 14px; color: #334155; }
-        .features li { margin-bottom: 8px; list-style-type: "✅ "; margin-right: 15px; }
-        .features li:last-child { margin-bottom: 0; }
-        .form-group { margin-bottom: 15px; text-align: right; }
-        label { display: block; font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #334155; }
-        input { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; outline: none; transition: 0.2s; }
-        input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
-        button { width: 100%; background: #2563eb; color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 5px; }
-        button:hover { background: #1d4ed8; }
-        button:disabled { background: #94a3b8; cursor: not-allowed; }
-        #successMsg { display: none; margin-top: 20px; padding: 20px; background: #dcfce7; color: #166534; border-radius: 12px; font-size: 15px; line-height: 1.6; }
-        .download-btn { display: inline-block; margin-top: 12px; background: #16a34a; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        body {
+            background-color: var(--brand-dark);
+            background-image: 
+                radial-gradient(at 10% 10%, var(--brand) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, #0d3b42 0px, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 540px;
+            width: 100%;
+            background: rgba(11, 82, 91, 0.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 36px 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-bar {
+            position: absolute;
+            top: 0; right: 0; left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        .top-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(46, 196, 182, 0.15);
+            border: 1px solid rgba(46, 196, 182, 0.4);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 18px;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
+        h1 span {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(46, 196, 182, 0.4);
+            text-underline-offset: 6px;
+        }
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        /* Tags / Pills */
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #e2e8f0;
+            direction: ltr;
+        }
+        /* Bento Phases */
+        .bento-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .bento-item {
+            background: rgba(5, 38, 43, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px 16px;
+            text-align: right;
+            transition: transform 0.2s;
+        }
+        .bento-item:hover {
+            border-color: rgba(46, 196, 182, 0.3);
+        }
+        .bento-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .bento-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        /* Form Section */
+        .form-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 22px 20px;
+        }
+        .form-header {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #fff;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 14px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            background: rgba(5, 38, 43, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+        input::placeholder { color: #64748b; }
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.15);
+        }
+        button {
+            width: 100%;
+            background: var(--accent);
+            color: var(--brand-dark);
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 6px;
+            box-shadow: 0 8px 20px -4px rgba(46, 196, 182, 0.4);
+        }
+        button:hover {
+            background: #25a99d;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            background: #475569;
+            color: #94a3b8;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        .micro-copy {
+            font-size: 11px;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 12px;
+        }
+        /* Success Message */
+        #successMsg {
+            display: none;
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(46, 196, 182, 0.12);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+        }
+        #successMsg h3 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        #successMsg p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .dl-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--brand-dark);
+            text-decoration: none;
+            font-weight: 900;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .quote-footer {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <span class="badge">دانلود رایگان (PDF)</span>
-    <h1>عنوان جذاب لید مگنت خود را اینجا بنویسید</h1>
-    <p>توضیح کوتاه و ترغیب‌کننده درباره اینکه این فایل چه مشکلی از کاربر حل می‌کند و چرا باید همین الان آن را دانلود کند.</p>
+<div class="container">
+    <div class="glow-bar"></div>
+    
+    <div class="top-badge">⚡ کاربرگ عملی و بدون فیلتر</div>
+    
+    <h1>«علاقه‌ات رو دنبال کن» یه دروغ بزرگه! بیا مسیر شغلیت رو <span>مهندسی</span> کن.</h1>
+    
+    <p class="subtitle">
+        شغل ایده‌آل جایی منتظرت ننشسته که پیداش کنی؛ ساختنیه. با این چک‌لیست ۱۰ مرحله‌ای، از سردرگمی بیا بیرون و با داده‌های واقعی، شغل اختصاصی خودت رو بساز.
+    </p>
 
-    <ul class="features">
-        <li>مزیت اول یا سرفصل مهم فایل شما</li>
-        <li>مزیت دوم که برای مخاطب جذاب است</li>
-        <li>تکنیک‌های کاربردی و بدون حاشیه</li>
-    </ul>
+    <div class="pills">
+        <span class="pill">#Anti_Vision</span>
+        <span class="pill">#Skill_Stacking</span>
+        <span class="pill">#Proof_of_Work</span>
+        <span class="pill">#Energy_Audit</span>
+    </div>
 
-    <form id="leadForm">
-        <div class="form-group">
-            <label>نام شما</label>
-            <input type="text" name="Name" required placeholder="مثلاً: علی رضایی">
+    <div class="bento-list">
+        <div class="bento-item">
+            <div class="bento-title">🔍 فاز ۱: رمزگشایی از خود (فیلترهای درونی)</div>
+            <div class="bento-desc">کشف خط قرمزها (Anti-Vision)، ممیزی انرژی و تفکیک کنجکاوی واقعی از علایق مصرفی.</div>
         </div>
-        <div class="form-group">
-            <label>شماره موبایل (برای دریافت لینک)</label>
-            <input type="tel" name="Phone" required pattern="^09[0-9]{9}$" placeholder="09123456789" dir="ltr" style="text-align: right;">
+        <div class="bento-item">
+            <div class="bento-title">🧩 فاز ۲: مهندسی ارزش و بازار</div>
+            <div class="bento-desc">خداحافظی با بی‌پولی! ساخت «پشته مهارتی» (ترکیب ۳ مهارت مکمل) و انتخاب بین کارمندی، فریلنسری یا شغل موزائیکی.</div>
         </div>
-        <button type="submit" id="submitBtn">دریافت رایگان فایل</button>
-    </form>
+        <div class="bento-item">
+            <div class="bento-title">🚀 فاز ۳: خروج از کمال‌گرایی و اقدام</div>
+            <div class="bento-desc">طراحی پروژه آزمایشی ۳۰ روزه و ساخت «سند اثبات کار» (چون رزومه کاغذی و مدرک دیگه کافی نیست!).</div>
+        </div>
+    </div>
 
-    <div id="successMsg">
-        🎉 اطلاعات شما ثبت شد! فایل شما آماده است:<br>
-        <a href="YOUR_LEAD_MAGNET_LINK" class="download-btn" target="_blank">کلیک کنید و دانلود کنید</a>
+    <div class="form-box">
+        <form id="leadForm">
+            <div class="form-header">👇 اطلاعاتت رو وارد کن تا فایل برات باز بشه:</div>
+            <div class="input-group">
+                <label>اسمت چیه؟</label>
+                <input type="text" name="Name" required placeholder="مثلاً: آرش / سارا">
+            </div>
+            <div class="input-group">
+                <label>شماره موبایلت (برای دانلود فایل + گام بعدی)</label>
+                <input type="tel" name="Phone" required pattern="^09[0-9]{9}$" placeholder="09123456789" dir="ltr" style="text-align: right;">
+            </div>
+            <button type="submit" id="submitBtn">دریافت رایگان چک‌لیست (PDF) 📥</button>
+            <div class="micro-copy">🔒 شماره‌ات پیش ما امنه. بعد از تکمیل چک‌لیست، برای بررسی مسیرت باهات در ارتباطیم.</div>
+        </form>
+
+        <div id="successMsg">
+            <h3>دمت گرم! قدم اول رو برداشتی 🔥</h3>
+            <p>فایل چک‌لیست آماده دانلوده. همین امروز پرش کن؛ به‌زودی برای چیدن قدم‌های عملی بعدی باهات تماس می‌گیریم.</p>
+            <a href="career-checklist.pdf" download="چک‌لیست-مهندسی-مسیر-شغلی.pdf" class="dl-btn">دانلود مستقیم فایل PDF</a>
+        </div>
+    </div>
+
+    <div class="quote-footer">
+        «هیچ شغل ایده‌آلی در دنیا منتظر تو ننشسته؛ شغل ایده‌آل ساختنی است، نه یافتنی.»
     </div>
 </div>
 
@@ -66,17 +305,24 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerText = 'در حال آماده‌سازی فایل...';
+        btn.innerText = 'در حال قفل‌گشایی فایل... ⏳';
 
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
                 form.style.display = 'none';
                 msg.style.display = 'block';
+                // شروع دانلود خودکار علاوه بر دکمه
+                const link = document.createElement('a');
+                link.href = 'career-checklist.pdf';
+                link.download = 'چک‌لیست-مهندسی-مسیر-شغلی.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             })
             .catch(error => {
-                alert('خطایی رخ داد. لطفاً دوباره تلاش کنید.');
+                alert('ارتباط برقرار نشد! لطفاً اینترنتت رو چک کن و دوباره بزن.');
                 btn.disabled = false;
-                btn.innerText = 'دریافت رایگان فایل';
+                btn.innerText = 'دریافت رایگان چک‌لیست (PDF) 📥';
             });
     });
 </script>
