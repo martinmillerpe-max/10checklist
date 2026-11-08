@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانلود رایگان راهنمای جامع</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .card { background: #ffffff; max-width: 480px; width: 100%; padding: 35px 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); text-align: center; }
+        .badge { background: #dbeafe; color: #1d4ed8; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 16px; }
+        h1 { font-size: 24px; margin-bottom: 12px; color: #0f172a; line-height: 1.5; }
+        p { font-size: 15px; color: #475569; margin-bottom: 24px; line-height: 1.7; }
+        .features { text-align: right; background: #f1f5f9; padding: 15px 20px; border-radius: 12px; margin-bottom: 24px; font-size: 14px; color: #334155; }
+        .features li { margin-bottom: 8px; list-style-type: "✅ "; margin-right: 15px; }
+        .features li:last-child { margin-bottom: 0; }
+        .form-group { margin-bottom: 15px; text-align: right; }
+        label { display: block; font-size: 13px; margin-bottom: 6px; font-weight: 600; color: #334155; }
+        input { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; outline: none; transition: 0.2s; }
+        input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        button { width: 100%; background: #2563eb; color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 5px; }
+        button:hover { background: #1d4ed8; }
+        button:disabled { background: #94a3b8; cursor: not-allowed; }
+        #successMsg { display: none; margin-top: 20px; padding: 20px; background: #dcfce7; color: #166534; border-radius: 12px; font-size: 15px; line-height: 1.6; }
+        .download-btn { display: inline-block; margin-top: 12px; background: #16a34a; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <span class="badge">دانلود رایگان (PDF)</span>
+    <h1>عنوان جذاب لید مگنت خود را اینجا بنویسید</h1>
+    <p>توضیح کوتاه و ترغیب‌کننده درباره اینکه این فایل چه مشکلی از کاربر حل می‌کند و چرا باید همین الان آن را دانلود کند.</p>
+
+    <ul class="features">
+        <li>مزیت اول یا سرفصل مهم فایل شما</li>
+        <li>مزیت دوم که برای مخاطب جذاب است</li>
+        <li>تکنیک‌های کاربردی و بدون حاشیه</li>
+    </ul>
+
+    <form id="leadForm">
+        <div class="form-group">
+            <label>نام شما</label>
+            <input type="text" name="Name" required placeholder="مثلاً: علی رضایی">
+        </div>
+        <div class="form-group">
+            <label>شماره موبایل (برای دریافت لینک)</label>
+            <input type="tel" name="Phone" required pattern="^09[0-9]{9}$" placeholder="09123456789" dir="ltr" style="text-align: right;">
+        </div>
+        <button type="submit" id="submitBtn">دریافت رایگان فایل</button>
+    </form>
+
+    <div id="successMsg">
+        🎉 اطلاعات شما ثبت شد! فایل شما آماده است:<br>
+        <a href="YOUR_LEAD_MAGNET_LINK" class="download-btn" target="_blank">کلیک کنید و دانلود کنید</a>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwKByoOOVqJzZ0b7ivGUjs331zLanElj_QBNhyy7ct8kYBURWKhN7mxxf-MEgQRIljz/exec';
+    const form = document.getElementById('leadForm');
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.innerText = 'در حال آماده‌سازی فایل...';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                form.style.display = 'none';
+                msg.style.display = 'block';
+            })
+            .catch(error => {
+                alert('خطایی رخ داد. لطفاً دوباره تلاش کنید.');
+                btn.disabled = false;
+                btn.innerText = 'دریافت رایگان فایل';
+            });
+    });
+</script>
+
+</body>
+</html>
